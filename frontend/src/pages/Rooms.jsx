@@ -12,7 +12,7 @@ const Rooms = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await fetch("http://127.0.0.1:8000/room");
+			const response = await fetch("https://hotelapp-zoa9.onrender.com/room");
 
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
@@ -100,7 +100,7 @@ const Rooms = () => {
 		console.log(...formData); // FormData içeriğini görmek için
   
 		try {
-		  const response = await fetch("http://127.0.0.1:8000/room", {
+		  const response = await fetch("https://hotelapp-zoa9.onrender.com/room", {
 			 method: "POST",
 			 body: formData,
 		  });
@@ -227,7 +227,7 @@ const Rooms = () => {
 									</td>
 									<td className="py-2 px-4 border-b border-gray-200">
 										<img
-											src={`http://localhost:8000/images/${data.image}` }
+											src={`https://hotelapp-zoa9.onrender.com/images/${data.image}` }
 											width={200}
 											height={200}
 											alt=""

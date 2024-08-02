@@ -18,7 +18,7 @@ const Resavations = () => {
 
 	const fetchResarvations = async () => {
 		try {
-			const response = await fetch("http://localhost:8000/resarvation");
+			const response = await fetch("https://hotelapp-zoa9.onrender.com/resarvation");
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
 			}
@@ -33,7 +33,7 @@ const Resavations = () => {
 
 	const fetchRooms = async () => {
 		try {
-			const response = await fetch("http://127.0.0.1:8000/room");
+			const response = await fetch("https://hotelapp-zoa9.onrender.com/room");
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
 			}
@@ -70,7 +70,7 @@ const Resavations = () => {
       console.log(formData)
 		try {
 			console.log(formData)  
-			const response = await fetch("http://localhost:8000/resarvation", {
+			const response = await fetch("https://hotelapp-zoa9.onrender.com/resarvation", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
