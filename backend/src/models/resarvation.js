@@ -7,12 +7,12 @@ const { mongoose } = require('../configs/dbConnection')
 /* ------------------------------------------------------- */
 
 const resarvationSchema = mongoose.Schema({
-    userid:{
+    userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
         required:true
     },
-    roomid:{
+    roomId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Room",
         required:true
@@ -44,8 +44,7 @@ const resarvationSchema = mongoose.Schema({
     },
     totalprice:{
         type:Number,
-        trim:true,
-        required:true
+        trim:true
     }
 }, {
     collection:"resarvation",

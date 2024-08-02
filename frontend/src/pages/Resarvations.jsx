@@ -23,6 +23,8 @@ const Resavations = () => {
 				throw new Error("Network response was not ok");
 			}
 			const result = await response.json();
+			console.log(result.data)
+		
 			setResarvations(result.data);
 		} catch (error) {
 			console.error("Error fetching data:", error.message);
@@ -43,7 +45,7 @@ const Resavations = () => {
 	};
 
 	const [formData, setFormData] = useState({
-		userId: "",
+		userId: "66aceeee8ad678b693fcc9f2",
 		roomId: "",
 		arrival_date: "",
 		departure_date: "",
@@ -67,6 +69,7 @@ const Resavations = () => {
 
       console.log(formData)
 		try {
+			console.log(formData)  
 			const response = await fetch("http://localhost:8000/resarvation", {
 				method: "POST",
 				headers: {
@@ -118,7 +121,7 @@ const Resavations = () => {
 							Select a Room
 						</option>
 						{rooms.map((room) => (
-							<option key={room.id} value={room.id}>
+							<option key={room._id} value={room._id}>
 								{room.roomnumber}
 							</option>
 						))}

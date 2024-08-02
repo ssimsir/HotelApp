@@ -37,8 +37,8 @@ dbConnection()
 app.use(express.json())
 
 const cors = require("cors");
-app.use(cors());   //bütün corslara izin verir
-//app.use(cors({ origin: "http://localhost:3000", }));
+//app.use(cors());   //bütün corslara izin verir
+app.use(cors({ origin: "http://localhost:3000", }));
 
 // Logger:
 app.use(require('./src/middlewares/logger'))
@@ -69,6 +69,7 @@ app.all('/', (req, res) => {
     })
 })
 
+app.use('/images', express.static('./uploads'))
 /* ------------------------------------------------------- */
 
 // errorHandler:

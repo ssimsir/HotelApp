@@ -27,8 +27,13 @@ module.exports = {
     },
 
     create: async (req, res) => {
+        console.log('file:', req.file)
 
-        console.log(req.body)
+        if (req.file) {
+            req.body.image = req.file.filename
+        }
+
+     
         const data = await roomModel.create(req.body)
         res.status(200).send({
             error:false,
@@ -38,6 +43,9 @@ module.exports = {
 
     update: async (req, res) => {
 
+        if (req.file) {
+            req.body.image = req.file.filename
+        }
         const data = await roomModel.updateOne({_id:req.params.id}, req.body, {runValidators:true})
         res.status(202).send({
             error:true,

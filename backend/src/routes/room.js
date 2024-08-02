@@ -6,18 +6,20 @@ const router = require("express").Router();
 /* ------------------------------------------------------- */
 // routes/pizza:
 
+const upload = require('../middlewares/upload')
+
 const room = require("../controllers/room");
 
 // URL: /pizzas
 
 router.route("/")
     .get(room.list)
-    .post(room.create);
+    .post(upload.single('image'), room.create);
 
 router.route("/:id")
     .get(room.read)
-    .put(room.update)
-    .patch(room.update)
+    .put(upload.single('image'), room.update)
+    .patch(upload.single('image'), room.update)
     .delete(room.delete);
 
 /* ------------------------------------------------------- */
