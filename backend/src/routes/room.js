@@ -1,20 +1,25 @@
 "use strict";
 /* -------------------------------------------------------
-    | FULLSTACK TEAM | NODEJS / EXPRESS |
+    NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
 const router = require("express").Router();
 /* ------------------------------------------------------- */
+// routes/pizza:
 
-const user = require("../controllers/user");
+const room = require("../controllers/room");
 
-router.route("/").get(user.list).post(user.create);
+// URL: /pizzas
 
-router
-  .route("/:id")
-  .get(user.read)
-  .put(user.update)
-  .patch(user.update)
-  .delete(user.delete);
+router.route("/")
+    .get(room.list)
+    .post(room.create);
+
+router.route("/:id")
+    .get(room.read)
+    .put(room.update)
+    .patch(room.update)
+    .delete(room.delete);
+
 /* ------------------------------------------------------- */
 module.exports = router;
 

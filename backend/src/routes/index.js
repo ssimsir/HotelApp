@@ -15,12 +15,10 @@ router.use('/users', require('./user'))
 // token:
 router.use('/tokens', require('./token'))
 
-// order:
-router.use('/orders', require('./order'))
-// pizza:
-router.use('/pizzas', require('./pizza'))
-// topping:
-router.use('/toppings', require('./topping'))
+// room:
+router.use('/room', require('./room'))
+// resarvation:
+router.use('/resarvation', require('./resarvation'))
 
 // document:
 router.use('/documents', require('./document'))
