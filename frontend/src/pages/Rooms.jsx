@@ -5,6 +5,7 @@ const Rooms = () => {
 	const [rooms, setRooms] = useState([]);
   
   const [postData, setPostData] = useState([]);
+  
 	useEffect(() => {
 		fetchData();
 	}, [postData]);
@@ -70,6 +71,8 @@ const Rooms = () => {
 	return (
 		<div className="container flex text-center mt-4 gap-10 items-center justify-center">
 			{/* <div className="flex flex-col items-center justify-center h-screen bg-gray-100"> */}
+
+
 				<form
 					className="bg-white p-6 rounded shadow-md w-full max-w-sm mb-6"
 					onSubmit={handleSubmit}
@@ -140,6 +143,9 @@ const Rooms = () => {
 						Submit
 					</button>
 				</form>
+
+
+
 
 				{rooms.length > 0 ? (
 					<div className="bg-white p-6 rounded shadow-md w-full max-w-2xl">

@@ -1,5 +1,5 @@
 {
-  "name": "hotelapp",
+  "name": "hotel-app-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
