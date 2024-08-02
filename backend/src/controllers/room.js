@@ -28,7 +28,8 @@ module.exports = {
 
     create: async (req, res) => {
 
-        const data = await roomModel.createOne(req.body)
+        console.log(req.body)
+        const data = await roomModel.create(req.body)
         res.status(200).send({
             error:false,
             data

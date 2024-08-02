@@ -18,12 +18,12 @@ const Resavations = () => {
 
 	const fetchResarvations = async () => {
 		try {
-			const response = await fetch("http://localhost:4000/resarvation");
+			const response = await fetch("http://localhost:8000/resarvation");
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
 			}
 			const result = await response.json();
-			setResarvations(result);
+			setResarvations(result.data);
 		} catch (error) {
 			console.error("Error fetching data:", error.message);
 		}
@@ -31,12 +31,12 @@ const Resavations = () => {
 
 	const fetchRooms = async () => {
 		try {
-			const response = await fetch("http://localhost:4000/room");
+			const response = await fetch("http://127.0.0.1:8000/room");
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
 			}
 			const result = await response.json();
-			setRooms(result);
+			setRooms(result.data);
 		} catch (error) {
 			console.error("Error fetching data:", error.message);
 		}
@@ -67,7 +67,7 @@ const Resavations = () => {
 
       console.log(formData)
 		try {
-			const response = await fetch("http://localhost:4000/resarvation", {
+			const response = await fetch("http://localhost:8000/resarvation", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

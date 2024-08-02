@@ -19,8 +19,8 @@ const roomSchema = mongoose.Schema({
     bedtype:{
         type:Number,
         trim:true,
-        required:true,
-        enum:["King size", "Queen size", "Double", "Triple", "Twin", "Single"]
+        required:true
+        //enum:["King size", "Queen size", "Double", "Triple", "Twin", "Single"]
     },
     price:{
         type:Number,

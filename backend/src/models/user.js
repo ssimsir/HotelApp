@@ -6,6 +6,9 @@ const { Collection } = require('mongoose')
 const { mongoose } = require('../configs/dbConnection')
 /* ------------------------------------------------------- */
 
+const passwordEncrypt = require("../helpers/passwordEncrypt");
+
+
 const userSchema = mongoose.Schema({
     //_id: mongoose tarafından otomatik oluşturuluyor
     username: {
@@ -17,7 +20,8 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        set: (password) => passwordEncrypt(password)
     },
     email: {
         type: String,

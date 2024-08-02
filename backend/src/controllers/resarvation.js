@@ -28,7 +28,7 @@ module.exports = {
 
     create: async (req, res) => {
 
-        const data = await resarvationModel.createOne(req.body)
+        const data = await resarvationModel.create(req.body)
         res.status(200).send({
             error:false,
             data

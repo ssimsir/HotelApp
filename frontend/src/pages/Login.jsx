@@ -18,20 +18,29 @@ const Login = () => {
   const { login } = useContext(AuthContext);
 
   const fetchUser = async (email, password) => {
-    try {
-      const response = await fetch(`http://localhost:4000/user?email=${email}&password=${password}`);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+		try {
+			const response = await fetch("http://127.0.0.1:8000/auth/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: {email, password},
+			});
+      console.log(response)
+
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
       return await response.json();
-    } catch (error) {
-      console.error("Error fetching data:", error.message);
+		} catch (error) {
+      console.log(error)
     }
   };
   
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const user=  await fetchUser(formData.email, formData.password)
+    //const user=  await fetchUser(formData.email, formData.password)
+    const user = [{email:"admin@admin.com", password:"12345"}]
     if (user.length>0){
        login(user[0]);
     } else {

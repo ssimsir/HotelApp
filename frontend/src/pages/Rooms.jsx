@@ -12,12 +12,14 @@ const Rooms = () => {
 
 	const fetchData = async () => {
 		try {
-			const response = await fetch("http://localhost:4000/room");
+			const response = await fetch("http://127.0.0.1:8000/room");
+			
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
 			}
 			const result = await response.json();
-			setRooms(result);
+			//console.log(result)
+			setRooms(result.data);
 		} catch (error) {
 			console.error("Error fetching data:", error.message);
 		}
@@ -43,16 +45,16 @@ const Rooms = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+		console.log(formData)
 		try {
-			const response = await fetch("http://localhost:4000/room", {
+			const response = await fetch("http://127.0.0.1:8000/room", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(formData),
 			});
-
+			console.log(response)
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
 			}
