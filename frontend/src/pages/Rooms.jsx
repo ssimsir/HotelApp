@@ -25,7 +25,7 @@ const Rooms = () => {
 		}
 	};
 
-	const [formData, setFormData] = useState({
+	const [formDatas, setFormDatas] = useState({
 		roomnumber: "",
 		bedtype: "",
 		price: "",
@@ -33,40 +33,93 @@ const Rooms = () => {
 	});
 
 	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setFormData({
-			...formData,
-			[name]: value,
-		});
+		
+		
+		const { name, value, files } = e.target;
+		//console.log(files[0])
+
+		
+		if (files){
+			setFormDatas({
+				...formDatas,
+				[name]: files[0],
+			});
+		} else {
+			setFormDatas({
+				...formDatas,
+				[name]: value,
+			});
+		}
+
 	};
+
+	// const handleSubmit = async (e) => {
+	// 	e.preventDefault();
+		
+	// 	const formData = new FormData()
+	// 	formData.append("roomnumber", formDatas.roomnumber )
+	// 	formData.append("bedtype", formDatas.bedtype )
+	// 	formData.append("price", formDatas.price )
+	// 	formData.append("image", formDatas.image )
+
+	// 	console.log(formData)
+	// 	try {
+	// 		const response = await fetch("http://127.0.0.1:8000/room", {
+	// 			method: "POST",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 			},
+	// 			//body: JSON.stringify(formData),
+	// 			body:formData
+	// 		});
+	// 		console.log(response);
+	// 		if (!response.ok) {
+	// 			throw new Error("Network response was not ok");
+	// 		}
+	// 		setPostData(await response.json());
+	// 		setFormDatas({
+	// 			roomnumber: "",
+	// 			bedtype: "",
+	// 			price: "",
+	// 			image: "",
+	// 		});
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(formData);
+  
+		const formData = new FormData();
+		formData.append("roomnumber", formDatas.roomnumber);
+		formData.append("bedtype", formDatas.bedtype);
+		formData.append("price", formDatas.price);
+		formData.append("image", formDatas.image);
+  
+		console.log(...formData); // FormData içeriğini görmek için
+  
 		try {
-			const response = await fetch("http://127.0.0.1:8000/room", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
-			console.log(response);
-			if (!response.ok) {
-				throw new Error("Network response was not ok");
-			}
-			setPostData(await response.json());
-			setFormData({
-				roomnumber: "",
-				bedtype: "",
-				price: "",
-				image: "",
-			});
+		  const response = await fetch("http://127.0.0.1:8000/room", {
+			 method: "POST",
+			 body: formData,
+		  });
+		  console.log(response);
+		  if (!response.ok) {
+			 throw new Error("Network response was not ok");
+		  }
+		  setPostData(await response.json());
+		  setFormDatas({
+			 roomnumber: "",
+			 bedtype: "",
+			 price: "",
+			 image: null,
+		  });
 		} catch (error) {
-			console.log(error);
+		  console.log(error);
 		}
-	};
-
+	 };
+  
 	return (
 		<div className="container flex text-center mt-4 gap-10 items-center justify-center">
 			{/* <div className="flex flex-col items-center justify-center h-screen bg-gray-100"> */}
@@ -87,7 +140,7 @@ const Rooms = () => {
 						id="roomnumber"
 						name="roomnumber"
 						className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
-						value={formData.roomnumber}
+						value={formDatas.roomnumber}
 						onChange={handleChange}
 					/>
 				</div>
@@ -101,7 +154,7 @@ const Rooms = () => {
 						id="bedtype"
 						name="bedtype"
 						className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
-						value={formData.bedtype}
+						value={formDatas.bedtype}
 						onChange={handleChange}
 					/>
 				</div>
@@ -114,7 +167,7 @@ const Rooms = () => {
 						id="price"
 						name="price"
 						className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
-						value={formData.price}
+						value={formDatas.price}
 						onChange={handleChange}
 					></input>
 				</div>
